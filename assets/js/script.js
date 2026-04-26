@@ -49,6 +49,44 @@ const updateNavbarState = () => {
 window.addEventListener("scroll", updateNavbarState);
 updateNavbarState();
 
+// Contact form dev submission
+const contactForm = document.getElementById("contact-form");
+const formToast = document.getElementById("form-toast");
+let toastTimeoutId;
+
+const showFormToast = () => {
+  if (!formToast) return;
+  formToast.classList.add("visible");
+  clearTimeout(toastTimeoutId);
+  toastTimeoutId = window.setTimeout(() => {
+    formToast.classList.remove("visible");
+  }, 4500);
+};
+
+if (contactForm) {
+  contactForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const submitButton = contactForm.querySelector(".form-submit");
+    if (submitButton) {
+      submitButton.disabled = true;
+    }
+
+    const formData = new FormData(contactForm);
+    const payload = Object.fromEntries(formData.entries());
+
+    console.log("Jane Homes enquiry (dev):", payload);
+
+    window.setTimeout(() => {
+      showFormToast();
+      contactForm.reset();
+      if (submitButton) {
+        submitButton.disabled = false;
+      }
+    }, 350);
+  });
+}
+
 // Staggered fade-in delays
 document
   .querySelectorAll(
