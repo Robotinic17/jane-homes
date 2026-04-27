@@ -293,7 +293,7 @@ nav:not(.scrolled) .nav-links a:hover {
       rgba(44, 26, 0, 0.35) 60%,
       rgba(44, 26, 0, 0.22) 100%
     ),
-    url("../images/Real Estate hero.jpeg");
+    url("../images/heroimg2");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -720,6 +720,8 @@ section {
   background: var(--cream-white);
   border-radius: 20px;
   overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   transition: all 0.3s ease;
   cursor: pointer;
   border: 1px solid var(--cream-deep);
@@ -743,7 +745,8 @@ section {
 
 .property-img img {
   width: 100%;
-  height: 280px;
+  height: 100%;
+  min-height: 280px;
   object-fit: cover;
   transition: transform 0.5s ease;
   display: block;
@@ -872,11 +875,102 @@ section {
   margin-bottom: 20px;
 }
 
+.property-desc {
+  font-size: clamp(14px, 1.15vw, 15px);
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-bottom: 14px;
+  font-weight: 400;
+}
+
 .property-specs {
   display: flex;
   gap: 20px;
   padding-top: 16px;
   border-top: 1px solid var(--cream-deep);
+}
+
+.property-benefits-wrap {
+  border-top: 1px solid var(--cream-deep);
+  margin-top: 18px;
+  padding-top: 16px;
+}
+
+.property-card--client .property-info {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.property-card--client .property-benefits-wrap {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.property-card--client .property-img img {
+  min-height: clamp(300px, 28vw, 360px);
+}
+
+.property-benefits {
+  margin: 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 8px;
+}
+
+.property-benefits li {
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.property-contact-row {
+  margin-top: auto;
+  padding-top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.property-whatsapp {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #25d366;
+  color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease;
+}
+
+.property-whatsapp:hover {
+  transform: translateY(-2px);
+}
+
+.property-contact-btn {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: var(--brown-primary);
+  color: var(--cream-white);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.property-contact-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(44, 26, 0, 0.18);
 }
 
 .spec {
@@ -1097,7 +1191,7 @@ section {
 
 .agents-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 28px;
   margin-top: 56px;
 }
@@ -1121,8 +1215,9 @@ section {
 
 .agent-photo {
   width: 100%;
-  height: 260px;
+  height: 297px;
   object-fit: cover;
+  object-position: 50% 5%;
   display: block;
   transition: transform 0.4s ease;
   background: var(--cream-deep);
@@ -1468,6 +1563,12 @@ footer {
 }
 
 /* ===== RESPONSIVE ===== */
+@media (max-width: 1200px) {
+  .properties-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 1024px) {
   nav {
     padding: 0 24px;
@@ -1486,9 +1587,6 @@ footer {
   .hero-left {
     max-width: 100%;
   }
-  .properties-grid {
-    grid-template-columns: 1fr 1fr;
-  }
   .property-card.featured {
     grid-column: span 2;
     grid-template-columns: 1fr;
@@ -1496,6 +1594,10 @@ footer {
   .property-card.featured .property-img img {
     height: 280px;
     min-height: auto;
+  }
+
+  .property-card--client .property-img img {
+    min-height: clamp(280px, 36vw, 340px);
   }
   .steps-grid {
     grid-template-columns: 1fr 1fr;
@@ -1611,12 +1713,33 @@ footer {
   }
 
   .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
     margin-bottom: 36px;
+  }
+
+  .property-card {
+    grid-template-columns: 1fr;
+  }
+
+  .property-img img {
+    min-height: 240px;
+  }
+
+  .property-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 12px;
   }
 
   .property-specs {
     flex-wrap: wrap;
     gap: 12px;
+  }
+
+  .property-contact-row {
+    flex-wrap: wrap;
   }
 
   .steps-grid,
@@ -1685,6 +1808,19 @@ footer {
 
   .property-info {
     padding: 18px;
+  }
+
+  .property-img img {
+    min-height: 220px;
+  }
+
+  .property-card--client .property-img img {
+    min-height: 220px;
+  }
+
+  .property-desc {
+    font-size: 13.5px;
+    line-height: 1.55;
   }
 
   .property-price {
